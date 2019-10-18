@@ -1,0 +1,34 @@
+{
+   "assets": [
+       {
+           "label": "WAF.DE",
+           "buyprice": "70.0",
+	   "buydate": "2019-05-21",
+	   "wealth": "5069.12"
+       },
+       {
+           "label": "SHA.DE",
+           "buyprice": "7.3425",
+           "buydate": "2019-03-06",
+	   "wealth": "3006.28"
+       },
+       {
+           "label": "IUSE.MI",
+           "buyprice": "62.22",
+           "buydate": "2018-10-24",
+	   "wealth": "2059.61"
+       },
+       {
+           "label": "ESM.MI",
+           "buyprice": "43.78",
+           "buydate": "2018-10-24",
+	   "wealth": "2056.26"
+       },
+       {
+           "label": "CM9.MI",
+           "buyprice": "272",
+           "buydate": "2018-10-24",
+	   "wealth": "2179.76"
+       }
+   ]    
+}
