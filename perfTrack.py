@@ -19,22 +19,25 @@ CWD = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 logfile = open(CWD + '/' + "logfile.txt",'a')
 
-cnf = readJson('conf.json',CWD,logfile)
+cnf = readJson('conf_elisa.json',CWD,logfile)
 
-en_day = date.today()
+#en_day = date.today()
+tomorrow = date.today() + timedelta(days=1)
 
 list_percent = []
 list_wealth = []
+pg.c('set multiplot layout 4, 3 title "Multiplot layout 4, 3" font ",14"')
 for i in cnf['assets']:
 
     buy_price = float(i.get('buyprice'))
     label = i.get('label')
     st_day = i.get('buydate')
 
-    list_wealth.append(i.get('wealth'))
+    cap_inv = i.get('wealth')
+    list_wealth.append(cap_inv)
 
     waf = yf.Ticker(label)
-    d = waf.history(start=st_day,end=en_day)
+    d = waf.history(start=st_day,end=tomorrow)
 
     #------------------#
     #  closing price   #
@@ -83,9 +86,20 @@ for i in cnf['assets']:
     #------------------#
     #       plot       #
     #------------------#
-    pg.s([percent])
+    pg.s([percent],filename=label+'.dat')
     pg.c('set xzeroaxis linetype 3 linewidth 2.5')
-    pg.c('plot "tmp.dat" w lp ')
+    pg.c('plot "' + label + '.dat" w lp ')
+
+    #------------------#
+    #      output      #
+    #------------------#
+
+    print "#------------------#"
+    print "#      "+label
+    print "#------------------#"
+    print "rendimento: " + str(round(percent[-1],2)) + "%"  
+    print "capitale  : " + str(cap_inv) + " EUR" 
+    print "\n"
 
 #------------------#
 #     average%     #
@@ -93,7 +107,18 @@ for i in cnf['assets']:
 mm = float(max(list_wealth))
 pesi = []
 summ = 0
+patrimonio=0.0
 for i in range(len(list_wealth)):
 	c = float(list_wealth[i])/mm
+	patrimonio = patrimonio + float(list_wealth[i])
 	pesi.append(float(list_wealth[i])/mm)
 	summ = summ + list_percent[i]*c
+tot= summ/sum(pesi)
+
+print "#------------------#"
+print "rendimento tot: " + str(round(tot,2)) + "%"
+print "capitale tot  : " + str(patrimonio) + " EUR"
+print "\n"
+
+#pg.c('set multiplot layout 4, 3 title "Multiplot layout 4, 3" font ",14"')
+#pg.c('plot "' + label + '.dat" w lp ')

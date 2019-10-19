@@ -13,6 +13,18 @@
 	   "wealth": "3006.28"
        },
        {
+           "label": "BAYN.DE",
+           "buyprice": "70.45",
+           "buydate": "2018-10-23",
+           "wealth": "1902.15"
+       },
+       {
+           "label": "BAYN.DE",
+           "buyprice": "65.97",
+           "buydate": "2018-10-25",
+           "wealth": "1055.52"
+       },
+       {
            "label": "IUSE.MI",
            "buyprice": "62.22",
            "buydate": "2018-10-24",
