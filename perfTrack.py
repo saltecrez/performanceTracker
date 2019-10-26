@@ -14,19 +14,23 @@ from datetime import datetime,timedelta,date
 import pandas as pd
 import PyGnuplot as pg
 from readTools import readJson
+from createDate import createDate
  
 CWD = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 logfile = open(CWD + '/' + "logfile.txt",'a')
 
 cnf = readJson('conf_elisa.json',CWD,logfile)
+#cnf = readJson('conf_carlo.json',CWD,logfile)
 
 #en_day = date.today()
 tomorrow = date.today() + timedelta(days=1)
 
 list_percent = []
 list_wealth = []
+
 pg.c('set multiplot layout 4, 3 title "Multiplot layout 4, 3" font ",14"')
+
 for i in cnf['assets']:
 
     buy_price = float(i.get('buyprice'))
@@ -72,7 +76,9 @@ for i in cnf['assets']:
     maxdate = dates[indmx]
     intdy = close_price.index(close_price[-1])
     if intdy==indmx:
-	print "max reached today!"
+	msg = label + ' has reached a new maximum: ' + str(round(percent[-1],2)) + "%"
+	bashCommand= "(echo 'Subject: '"+label+"; echo; echo '" + msg + "') | /usr/sbin/sendmail -i elisa.londero@inaf.it"
+	os.system(bashCommand)
 
     #------------------#
     #      minimum     #
@@ -81,7 +87,9 @@ for i in cnf['assets']:
     mingain = close_price[indmn]
     mindate = dates[indmn]
     if intdy==indmn:
-	print "min reached today!"
+	msg = label + ' has reached a new minimum: ' + str(round(percent[-1],2)) + "%"
+	bashCommand= "(echo 'Subject: '"+label+"; echo; echo '" + msg + "') | /usr/sbin/sendmail -i elisa.londero@inaf.it"
+	os.system(bashCommand)
 
     #------------------#
     #       plot       #
@@ -119,6 +127,3 @@ print "#------------------#"
 print "rendimento tot: " + str(round(tot,2)) + "%"
 print "capitale tot  : " + str(patrimonio) + " EUR"
 print "\n"
-
-#pg.c('set multiplot layout 4, 3 title "Multiplot layout 4, 3" font ",14"')
-#pg.c('plot "' + label + '.dat" w lp ')

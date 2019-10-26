@@ -1,14 +1,20 @@
 {
    "assets": [
        {
+           "label": "AFX.DE",
+           "buyprice": "93.123",
+           "buydate": "2019-10-23",
+           "wealth": "5005.8"
+       },
+       {
            "label": "WAF.DE",
-           "buyprice": "70.0",
+           "buyprice": "69.75",
 	   "buydate": "2019-05-21",
 	   "wealth": "5069.12"
        },
        {
            "label": "SHA.DE",
-           "buyprice": "7.3425",
+           "buyprice": "7.37",
            "buydate": "2019-03-06",
 	   "wealth": "3006.28"
        },
