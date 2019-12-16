@@ -1,5 +1,31 @@
 {
-   "assets": [
+   "activemultipleassets": [
+       {
+           "label": "HNL.DE",
+           "buyprice": "47.8",
+           "buydate": "2019-03-01",
+           "wealth": "1529.6"
+       },
+       {
+           "label": "HNL.DE",
+           "buyprice": "46.7",
+           "buydate": "2019-08-06",
+           "wealth": "5090.3"
+       },
+       {
+           "label": "IUSE.MI",
+           "buyprice": "60",
+           "buydate": "2019-01-30",
+           "wealth": "5040"
+       },
+       {
+           "label": "IUSE.MI",
+           "buyprice": "63.11",
+           "buydate": "2019-08-05",
+           "wealth": "5048.8"
+       }
+   ],
+   "activeassets": [
        {
            "label": "APC.DE",
            "buyprice": "153.217",
@@ -17,12 +43,6 @@
            "buyprice": "71.69",
            "buydate": "2019-03-01",
 	   "wealth": "1577.18"
-       },
-       {
-           "label": "IDP.DE",
-           "buyprice": "207.64",
-           "buydate": "2019-03-21",
-	   "wealth": "1661.12"
        },
        {
            "label": "1COV.DE",
@@ -47,30 +67,21 @@
            "buyprice": "100.8",
            "buydate": "2019-09-13",
            "wealth": "5040"
-       },
-       {
-           "label": "HNL.DE",
-           "buyprice": "47.8",
-           "buydate": "2019-03-01",
-           "wealth": "1529.6"
-       },
-       {
-           "label": "IUSE.MI",
-           "buyprice": "60",
-           "buydate": "2019-01-30",
-           "wealth": "5040"
-       },
-       {
-           "label": "HNL.DE",
-           "buyprice": "46.7",
-           "buydate": "2019-08-06",
-           "wealth": "5090.3"
-       },
-       {
-           "label": "IUSE.MI",
-           "buyprice": "63.11",
-           "buydate": "2019-08-05",
-           "wealth": "5048.8"
        }
-   ]    
+   ],
+   "soldassets": [
+       {
+           "label": "IDP.DE",
+           "sellprice": "199.56",
+           "selldate": "2019-10-22"
+       }
+   ],
+   "keepaneyeon": [
+       {
+           "label": "AMP.MI"
+       },
+       {
+           "label": "AMZ.DE"
+       }
+   ]
 }
