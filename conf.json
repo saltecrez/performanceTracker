@@ -1,87 +1,16 @@
 {
-   "activemultipleassets": [
-       {
-           "label": "HNL.DE",
-           "buyprice": "47.8",
-           "buydate": "2019-03-01",
-           "wealth": "1529.6"
-       },
-       {
-           "label": "HNL.DE",
-           "buyprice": "46.7",
-           "buydate": "2019-08-06",
-           "wealth": "5090.3"
-       },
-       {
-           "label": "IUSE.MI",
-           "buyprice": "60",
-           "buydate": "2019-01-30",
-           "wealth": "5040"
-       },
-       {
-           "label": "IUSE.MI",
-           "buyprice": "63.11",
-           "buydate": "2019-08-05",
-           "wealth": "5048.8"
-       }
-   ],
-   "activeassets": [
-       {
-           "label": "APC.DE",
-           "buyprice": "153.217",
-	   "buydate": "2019-03-01",
-	   "wealth": "1532.17"
-       },
-       {
-           "label": "BAS.DE",
-           "buyprice": "68.22",
-           "buydate": "2019-03-01",
-	   "wealth": "1569.060"
-       },
-       {
-           "label": "BAYN.DE",
-           "buyprice": "71.69",
-           "buydate": "2019-03-01",
-	   "wealth": "1577.18"
-       },
-       {
-           "label": "1COV.DE",
-           "buyprice": "49.01",
-           "buydate": "2019-02-26",
-	   "wealth": "1470.3"
-       },
-       {
-           "label": "SHA.DE",
-           "buyprice": "8.122",
-           "buydate": "2019-03-01",
-           "wealth": "1510.69"
-       },
-       {
-           "label": "WAF.DE",
-           "buyprice": "88.34",
-           "buydate": "2019-02-26",
-           "wealth": "1501.78"
-       },
+   "assets": [
        {
            "label": "AFX.DE",
-           "buyprice": "100.8",
-           "buydate": "2019-09-13",
-           "wealth": "5040"
-       }
-   ],
-   "soldassets": [
-       {
-           "label": "IDP.DE",
-           "sellprice": "199.56",
-           "selldate": "2019-10-22"
-       }
-   ],
-   "keepaneyeon": [
-       {
-           "label": "AMP.MI"
+           "buyprice": "93.123",
+           "buydate": "2019-10-23",
+           "wealth": "5005.8"
        },
        {
-           "label": "AMZ.DE"
+           "label": "IUSE.MI",
+           "buyprice": "62.22",
+           "buydate": "2018-10-24",
+           "wealth": "2059.61"
        }
    ]
 }

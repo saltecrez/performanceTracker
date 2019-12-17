@@ -10,7 +10,7 @@ import csv
 from datetime import datetime
 
 
-def readJson(filename,cwd,logfile):
+def read_json(filename,cwd,logfile):
     json_config_file_path = '%s/%s' % (cwd,filename)
     config_properties = {}
     try:
@@ -19,10 +19,9 @@ def readJson(filename,cwd,logfile):
         return config_properties
     except IOError as e:
         logfile.write('%s -- IOError: %s \n' % (datetime.now(),e))
-        exit(1)
 
 
-def readCSV(filename,logfile):
+def read_csv(filename,logfile):
     rowlist = []
     try:
         with open(filename) as csv_file:
@@ -32,4 +31,3 @@ def readCSV(filename,logfile):
         return rowlist
     except IOError as e:
         logfile.write('%s -- IOError: %s \n' % (datetime.now(),e))
-	exit(1)
