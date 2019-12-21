@@ -12,19 +12,19 @@ from bokeh.models import HoverTool
 from bokeh.models import DatetimeTickFormatter
 from bokeh.models import Title
 from bokeh.models import Span
-from bokeh.models import CrosshairTool 
+from bokeh.models import CrosshairTool
 from datetime import datetime as dt
 
 
-def plot_assets(label,x,y,z):
+def plot_assets(label,x,y,z,l):
     window_size = 30
     window = np.ones(window_size)/float(window_size)
     TOOLS = 'box_zoom,box_select,crosshair,reset'
     output_file("stocks.html", title="Performance tracker")
     p = figure(plot_width=800, plot_height=350, tools=TOOLS, toolbar_location=None)
-    p.line(x, y, line_width=2, line_color="greenyellow") 
+    p.line(x, y, line_width=2, line_color="greenyellow")
     # Title
-    p.add_layout(Title(text=str(y[-1]), text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
+    p.add_layout(Title(text=str(y[-1]) + '€;  ' + str(l) + '%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
     p.add_layout(Title(text=label, text_font_style="bold", text_font_size="16pt", text_font='Cantarell'), 'above')
     # Axes
     p.xaxis.minor_tick_line_color = None
@@ -54,12 +54,11 @@ def plot_assets(label,x,y,z):
     p.add_tools(CrosshairTool(line_color="red"))
     p.add_tools(HoverTool(
     tooltips=[
-        ( 'date',   '@x{%F}'            ),
-        ( 'price',  '@{y}{%0.2f}' ),
-        ("canvas (x,y)", "(0, 0)")
+        ( 'date', '@x{%F}' ),
+        ( 'price', '@{y}{%0.2f}' ),
     ],
     formatters={
-        'x'      : 'datetime',
+        'x' : 'datetime',
         'y' : 'printf',
     },
     mode='vline'

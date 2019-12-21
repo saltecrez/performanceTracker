@@ -1,16 +1,27 @@
 {
    "assets": [
-       {
-           "label": "AFX.DE",
-           "buyprice": "93.123",
-           "buydate": "2019-10-23",
-           "wealth": "5005.8"
-       },
-       {
-           "label": "IUSE.MI",
-           "buyprice": "62.22",
-           "buydate": "2018-10-24",
-           "wealth": "2059.61"
-       }
+      {
+         "label": "AFX.DE",
+	 "multiple": "y",
+	 "nested": [
+		{
+			"buyprice": "93.123",
+           		"buydate": "2019-10-23",
+           		"wealth": "5005.8"
+		},
+		{
+	               	"buyprice": "95.123",
+                       	"buydate": "2019-12-05",
+                       	"wealth": "10000.89"
+		}
+	 ]
+      },
+      {
+         "label": "IUSE.MI",
+         "multiple": "n",
+         "buyprice": "62.22",
+         "buydate": "2018-10-24",
+         "wealth": "2059.61"
+      }
    ]
 }
