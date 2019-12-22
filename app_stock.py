@@ -19,6 +19,9 @@ from get_dates import get_dates
 from plot_assets import plot_assets
 from percent_calculator import percent_calculator
 from weighted_mean import weighted_mean
+from get_minimum import get_minimum
+from get_maximum import get_maximum
+from send_email import send_email
 from bokeh.layouts import column
 from bokeh.plotting import show
 
@@ -31,6 +34,9 @@ cnf = read_json('conf.json',CWD,logfile)
 #
 today = date.today()
 tomorrow = date.today() + timedelta(days=1)
+recipient = cnf['email']
+sender = cnf['sender']
+smtp_host = cnf['smtphost']
 #
 plot=[]
 total_wealth_array = []
@@ -41,9 +47,7 @@ for i in cnf['assets']:
     label = (i.get('label')); multiple_asset = (i.get('multiple'))
 #
     if multiple_asset == "y":
-        cap_inv_array = []
-        buy_date_array = []
-        buy_price_array = []
+        cap_inv_array = []; buy_date_array = []; buy_price_array = []
         date_format = '%Y-%m-%d'
 
         for k in i.get('nested'):
@@ -71,7 +75,16 @@ for i in cnf['assets']:
     dates = get_dates(d)
     gain_loss = percent_calculator(close_price,buy_price)
     latest_gain_array.append(gain_loss[-1])
-    p = plot_assets(label,dates,close_price,buy_price,round(gain_loss[-1],3))
+    latest_yield_rounded = round(gain_loss[-1],3)
+#
+    if (get_maximum(close_price)):
+        msg = label + ' has reached a new maximum: ' + str(latest_yield_rounded) + '%'
+        send_email(label,msg,recipient,sender,smtp_host,logfile)
+    if (get_minimum(close_price)):
+        msg = label + ' has reached a new minimum: ' + str(latest_yield_rounded) + '%'
+        send_email(label,msg,recipient,sender,smtp_host,logfile)
+#
+    p = plot_assets(label,dates,close_price,buy_price,latest_yield_rounded)
     plot.append(p)
 #
 total_yield = round(weighted_mean(total_wealth_array,latest_gain_array),3)

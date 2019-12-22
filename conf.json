@@ -1,4 +1,7 @@
 {
+   "email": "elisa.londero@inaf.it",	
+   "sender": "vidar@localhost",	
+   "smtphost": "localhost",	
    "assets": [
       {
          "label": "AFX.DE",
