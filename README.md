@@ -21,9 +21,9 @@
         - "label": stocks label (e.g. AFX.DE for Zeiss on the Frankfurt stocks market)
         - "multiple": yes or no. Specifies if a stock was bought in multiple tranches
         - "nested": information characterizing a stock asset bought in multiple tranches:
-                - "buyprice": buy price for that asset tranche
-                - "buydate": date in which the asset was bougth (format YYYY-MM-DD))
-                - "wealth": capital invested in that asset
+            - "buyprice": buy price for that asset tranche
+            - "buydate": date in which the asset was bougth (format YYYY-MM-DD))
+            - "wealth": capital invested in that asset
 
 - **Usage**:
     - python app_stocks.py
