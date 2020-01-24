@@ -24,6 +24,7 @@ from get_maximum import get_maximum
 from send_email import send_email
 from bokeh.layouts import column
 from bokeh.plotting import show
+from verify_linux import verify_linux
 
 
 app = Flask(__name__)
@@ -31,6 +32,11 @@ app = Flask(__name__)
 CWD = os.path.dirname(os.path.abspath(sys.argv[0]))
 logfile = open(CWD + '/' + "logfile.txt",'a')
 cnf = read_json('conf.json',CWD,logfile)
+#
+try:
+    verify_linux()
+except AssertionError as err:
+    logfile.write('%s -- AssertionError: %s \n' % (datetime.now(),err))
 #
 today = date.today()
 tomorrow = date.today() + timedelta(days=1)
