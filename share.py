@@ -19,7 +19,7 @@ class HistoricalData(object):
         hd = locator.history(start=self.buy_date,end=self.tomorrow)
         return hd
 
-class TestInheritance(HistoricalData):
+class Share(HistoricalData):
     def __init__(self, label, buy_date, buy_price):
         self.buy_price = buy_price
         HistoricalData.__init__(self, label, buy_date)
@@ -34,5 +34,5 @@ class TestInheritance(HistoricalData):
         dates = [i for i in self.d.index]
         return dates
 
-x = TestInheritance("AFX.DE","2019-10-23","93.123")
-print(x.get_close_price())
+x = Share("AFX.DE","2019-10-23","93.123")
+print(x.get_dates())
