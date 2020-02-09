@@ -9,8 +9,9 @@ from datetime import date
 from datetime import timedelta
 
 class Share(object):
-    def __init__(self, label, buy_date, buy_price):
+    def __init__(self, label, buy_date, buy_price, wealth):
         self.label = label
+        self.wealth = wealth
         self.buy_date = buy_date
         self.buy_price = buy_price
         self.tomorrow = date.today() + timedelta(days=1)
@@ -49,12 +50,3 @@ class Share(object):
         rng = len(self.get_close_price())
         percent = [float(100*(self.get_close_price()[i]-float(self.buy_price))/float(self.buy_price)) for i in range(rng)]
         return percent
-
-
-x = Share("AFX.DE","2019-10-23","101.3")
-print(x.get_close_price())
-print(x.get_dates())
-print(x.get_maximum())
-print(x.get_minimum())
-print(x.get_percent())
-
