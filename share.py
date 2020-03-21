@@ -30,7 +30,7 @@ class Share(object):
         dates = [i for i in self._get_historical_data().index]
         return dates
 
-    def get_maximum(self):
+    def test_if_last_maximum(self):
         indmx = self.get_close_price().index(max(self.get_close_price()))
         inlst = self.get_close_price().index(self.get_close_price()[-1])
         if inlst == indmx:
@@ -38,7 +38,7 @@ class Share(object):
         else:
             return False
 
-    def get_minimum(self):
+    def test_if_last_minimum(self):
         indmn = self.get_close_price().index(min(self.get_close_price()))
         inlst = self.get_close_price().index(self.get_close_price()[-1])
         if inlst == indmn:
@@ -50,3 +50,6 @@ class Share(object):
         rng = len(self.get_close_price())
         percent = [float(100*(self.get_close_price()[i]-float(self.buy_price))/float(self.buy_price)) for i in range(rng)]
         return percent
+
+if __name__ == "__main__":
+    pass
