@@ -47,9 +47,28 @@ class Share(object):
             return False
 
     def get_percent(self):
-        rng = len(self.get_close_price())
-        percent = [float(100*(self.get_close_price()[i]-float(self.buy_price))/float(self.buy_price)) for i in range(rng)]
+        percent = []
+        cp = self.get_close_price()
+        for i in range(len(cp)):
+            delta = float(cp[i])-float(self.buy_price)
+            dummy = 100*delta/float(self.buy_price)
+            percent.append(dummy)
         return percent
 
+    def get_yield(self):
+        percent = self.get_percent()
+        latest_yield_rounded = round(percent[-1],3)
+        return latest_yield_rounded
+
+    def fall_from_max(self):
+        indmx = self.get_close_price().index(max(self.get_close_price()))
+        maxperc = self.get_percent()[indmx]
+        lastperc = self.get_percent()[-1]
+        loss = lastperc-maxperc
+        if loss < 0:
+            return round(loss,2) 
+
 if __name__ == "__main__":
-    pass
+    sh = Share('AFX.DE','2019-10-23','93.123','5005.8')
+    print(sh.get_close_price())
+    print(sh.get_percent())

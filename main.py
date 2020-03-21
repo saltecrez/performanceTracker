@@ -22,9 +22,12 @@ def main():
     plot=[]
     for i in shares_list:
         sh = Share(i[0],i[1],i[2],i[3])
+        share_yield = sh.get_yield()
         dates = sh.get_dates()
         clprice = sh.get_close_price()
-        pa = PlotAssets(i[0],dates,clprice,float(i[2])).plot_assets()
+        loss = sh.fall_from_max()
+        
+        pa = PlotAssets(i[0],dates,clprice,float(i[2]),share_yield,loss).plot_assets()
         plot.append(pa)
 
     show(column(plot))

@@ -16,23 +16,22 @@ from bokeh.models import CrosshairTool
 from datetime import datetime as dt
 
 class PlotAssets(object):
-    def __init__(self, label, dates, close_price, buy_price):
+    def __init__(self, label, dates, close_price, buy_price, latest_yield_rounded,loss):
         self.label = label
         self.dates = dates
         self.closeprice = close_price
         self.buyprice = buy_price
-        #self.lyr = latest_yield_rounded
+        self.lyr = latest_yield_rounded
+        self.loss = loss
 
     def plot_assets(self):
-        window_size = 30
-        window = np.ones(window_size)/float(window_size)
         TOOLS = 'box_zoom,box_select,crosshair,reset'
         output_file("stocks.html", title="Performance tracker")
-        p = figure(plot_width=800, plot_height=350, tools=TOOLS, toolbar_location=None)
+        p = figure(plot_width=700, plot_height=350, tools=TOOLS, toolbar_location=None)
         p.line(self.dates, self.closeprice, line_width=2, line_color="greenyellow")
         # Title
-        #p.add_layout(Title(text=str(self.closeprice[-1]) + '€;  ' + str(l) + '%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
-        p.add_layout(Title(text=str(self.closeprice[-1]) + '€;  ', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
+        p.add_layout(Title(text='last price: ' + str(self.closeprice[-1]) + '€;   yield: ' + str(self.lyr) + '%;   fall from max:' + str(self.loss) +'%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
+        #p.add_layout(Title(text=str(self.closeprice[-1]) + '€;  ', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
         p.add_layout(Title(text=self.label, text_font_style="bold", text_font_size="16pt", text_font='Cantarell'), 'above')
         # Axes
         p.xaxis.minor_tick_line_color = None
@@ -62,12 +61,12 @@ class PlotAssets(object):
         p.add_tools(CrosshairTool(line_color="red"))
         p.add_tools(HoverTool(
         tooltips=[
-            ( 'date', '@dates{%F}' ),
-            ( 'price', '@{close_price}{%0.2f}' ),
+            ( 'date', '@x{%F}' ),
+            ( 'price', '@{y}{%0.2f}' ),
         ],
         formatters={
-            'dates' : 'datetime',
-            'close_price' : 'printf',
+            'x' : 'datetime',
+            'y' : 'printf',
         },
         mode='vline'
         ))

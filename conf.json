@@ -4,16 +4,16 @@
    "smtphost": "localhost",	
    "shares": [
       {
-         "label": "AFX.DE",
-         "buyprice": "93.123",
-         "buydate": "2019-10-23",
-         "wealth": "5005.8"
+         "label": "CM9.MI",
+         "buyprice": "272",
+         "buydate": "2018-10-24",
+         "wealth": "2179.76"
       },
       {
-         "label": "APC.DE",
-         "buyprice": "95.123",
-         "buydate": "2019-12-05",
-         "wealth": "10000.89"
+         "label": "AAPL.MI",
+         "buyprice": "284",
+         "buydate": "2020-02-04",
+         "wealth": "5000"
       },
       {
          "label": "IUSE.MI",
