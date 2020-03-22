@@ -12,6 +12,8 @@ from json_parser import SharesJsonParser
 from plot_assets import PlotAssets
 from bokeh.layouts import column
 from bokeh.plotting import show
+from portfolio import Portfolio
+from portfolio import SortOutShares
 
 rj = SharesJsonParser()
 
@@ -19,19 +21,22 @@ def main():
     VerifyLinux()
     app = Flask(__name__)
     shares_list = rj._get_shares()
+    sos = SortOutShares()
+    pf = Portfolio()
+    labels = sos.find_all_labels()
+    ml = sos.find_multiple_labels()
     plot=[]
-    for i in shares_list:
-        sh = Share(i[0],i[1],i[2],i[3])
+    for label in ml:
+        i = sos.join_shares(label)
+        sh = Share(label,i[0],i[1],i[2]) 
         share_yield = sh.get_yield()
         dates = sh.get_dates()
         clprice = sh.get_close_price()
         loss = sh.fall_from_max()
-        
-        pa = PlotAssets(i[0],dates,clprice,float(i[2]),share_yield,loss).plot_assets()
+        pa = PlotAssets(label,dates,clprice,float(i[2]),share_yield,loss).plot_assets()
         plot.append(pa)
 
     show(column(plot))
-
 
 if __name__ == "__main__":
     main()
