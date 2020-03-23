@@ -25,15 +25,29 @@ def main():
     pf = Portfolio()
     labels = sos.find_all_labels()
     ml = sos.find_multiple_labels()
+    sl = sos.find_single_labels()
     plot=[]
+
     for label in ml:
+
         i = sos.join_shares(label)
         sh = Share(label,i[0],i[1],i[2]) 
         share_yield = sh.get_yield()
         dates = sh.get_dates()
         clprice = sh.get_close_price()
         loss = sh.fall_from_max()
-        pa = PlotAssets(label,dates,clprice,float(i[2]),share_yield,loss).plot_assets()
+        pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
+        plot.append(pa)
+
+    for label in sl:
+
+        i = sos.select_single_shares(label)
+        sh = Share(label,i[0],i[1],i[2])
+        share_yield = sh.get_yield()
+        dates = sh.get_dates()
+        clprice = sh.get_close_price()
+        loss = sh.fall_from_max()
+        pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
         plot.append(pa)
 
     show(column(plot))

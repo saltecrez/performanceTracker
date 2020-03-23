@@ -16,12 +16,12 @@ from bokeh.models import CrosshairTool
 from datetime import datetime as dt
 
 class PlotAssets(object):
-    def __init__(self, label, dates, close_price, buy_price, latest_yield_rounded,loss):
+    def __init__(self, label, dates, close_price, buy_price, latest_yield, loss):
         self.label = label
         self.dates = dates
         self.closeprice = close_price
         self.buyprice = buy_price
-        self.lyr = latest_yield_rounded
+        self.ly = latest_yield
         self.loss = loss
 
     def plot_assets(self):
@@ -30,8 +30,7 @@ class PlotAssets(object):
         p = figure(plot_width=700, plot_height=350, tools=TOOLS, toolbar_location=None)
         p.line(self.dates, self.closeprice, line_width=2, line_color="greenyellow")
         # Title
-        p.add_layout(Title(text='last price: ' + str(self.closeprice[-1]) + '€;   yield: ' + str(self.lyr) + '%;   fall from max:' + str(self.loss) +'%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
-        #p.add_layout(Title(text=str(self.closeprice[-1]) + '€;  ', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
+        p.add_layout(Title(text='last price: ' + str(self.closeprice[-1]) + '€;   yield: ' + str(self.ly) + '%;   fall from max:' + str(self.loss) +'%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
         p.add_layout(Title(text=self.label, text_font_style="bold", text_font_size="16pt", text_font='Cantarell'), 'above')
         # Axes
         p.xaxis.minor_tick_line_color = None

@@ -29,13 +29,22 @@ class SortOutShares(object):
         return labels
 
     def find_multiple_labels(self):
-        labels = [i[0] for i in self.shares_list]
+        labels = self.find_all_labels() 
         counter = collections.Counter(labels)
         multiple_labels = []
         for label, count in counter.items():
             if count > 1:
                 multiple_labels.append(label)
         return multiple_labels
+
+    def find_single_labels(self):
+        labels = self.find_all_labels()
+        ml = self.find_multiple_labels()
+        sl = []
+        for i in labels:
+            if i not in ml:
+                sl.append(i)
+        return sl
 
     def multiple_wealth(self, wlist):
         tw = 0.0
@@ -51,17 +60,26 @@ class SortOutShares(object):
         d = min(dlist)
         return d
 
-    def join_shares(self, label):
+    def join_shares(self, multiple_label):
         wl = []; bpl = []; dl = []
-        for i in self.shares_list:
-            if label  == i[0]:
-                wl.append(float(i[3]))
-                bpl.append(float(i[2]))
-                dl.append(i[1])
+        for share in self.shares_list:
+            if multiple_label == share[0]:
+                dl.append(share[1])
+                bpl.append(float(share[2]))
+                wl.append(float(share[3]))
         md = self.multiple_date(dl)
         mbp = self.multiple_buyprice(wl,bpl)
         mw = self.multiple_wealth(wl)
         return md, mbp, mw
+
+    def select_single_shares(self, single_label):
+        wl = []; bpl = []; dl = []
+        for share in self.shares_list:
+            if single_label == share[0]:
+                dl = share[1]
+                bpl = float(share[2])
+                wl = float(share[3])
+        return dl, bpl, wl
 
 class Portfolio(object):
     def __init__(self):
