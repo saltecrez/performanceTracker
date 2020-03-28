@@ -7,7 +7,9 @@ __date__ = "February 2020"
 from share import Share
 from flask import Flask
 from flask import Markup
+from flask import request
 from bokeh.embed import file_html
+from bokeh.embed import components
 from flask import render_template
 from bokeh.resources import CDN
 from json_parser import SharesJsonParser
@@ -54,7 +56,15 @@ def index():
         loss = sh.fall_from_max()
         pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
         plot.append(pa)
-    return Markup(file_html(plot, CDN, 'Performance tracker'))
+
+    plot_script, plot_div = components(plot)
+    print(plot_script)
+    kwargs = {'plot_script': plot_script, 'plot_div': plot_div}
+    kwargs['title'] = 'Performance tracker'
+    if request.method == 'GET':
+        return render_template('index.html', **kwargs)
+    abort(404)
+    abort(Response('Hello'))
 
 if __name__ == "__main__":
     app.run(debug=True)
