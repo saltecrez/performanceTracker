@@ -4,22 +4,22 @@
    "smtphost": "localhost",	
    "shares": [
       {
-         "label": "CM9.MI",
-         "buyprice": "272",
-         "buydate": "2018-10-24",
-         "wealth": "2179.76"
-      },
-      {
-         "label": "AAPL.MI",
-         "buyprice": "284",
-         "buydate": "2020-02-04",
-         "wealth": "5000"
+         "label": "HNL.DE",
+         "buyprice": "47.8",
+         "buydate": "2019-03-01",
+         "wealth": "1529.6"
       },
       {
          "label": "IUSE.MI",
          "buyprice": "62.22",
          "buydate": "2018-10-24",
          "wealth": "2059.61"
+      },
+      {
+         "label": "IUSE.MI",
+         "buyprice": "60.22",
+         "buydate": "2019-10-24",
+         "wealth": "4059.61"
       }
    ]
 }

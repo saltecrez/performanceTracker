@@ -4,6 +4,7 @@ __author__ = "Elisa Londero"
 __email__ = "elisa.londero@inaf.it"
 __date__ = "December 2019"
 
+import os
 import time
 import numpy as np
 from bokeh.plotting import figure
@@ -25,9 +26,9 @@ class PlotAssets(object):
         self.loss = loss
 
     def plot_assets(self):
-        TOOLS = 'box_zoom,box_select,crosshair,reset'
-        output_file("stocks.html", title="Performance tracker")
-        p = figure(plot_width=700, plot_height=350, tools=TOOLS, toolbar_location=None)
+        TOOLS = 'box_select,crosshair,reset'
+ #       output_file("stocks.html", title="Performance tracker")
+        p = figure(plot_width=1000, plot_height=250, tools=TOOLS, toolbar_location=None)
         p.line(self.dates, self.closeprice, line_width=2, line_color="greenyellow")
         # Title
         p.add_layout(Title(text='last price: ' + str(self.closeprice[-1]) + '€;   yield: ' + str(self.ly) + '%;   fall from max:' + str(self.loss) +'%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')

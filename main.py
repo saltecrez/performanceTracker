@@ -6,6 +6,10 @@ __date__ = "February 2020"
 
 from share import Share
 from flask import Flask
+from flask import Markup
+from bokeh.embed import file_html
+from flask import render_template
+from bokeh.resources import CDN
 from json_parser import SharesJsonParser
 from utilities import VerifyLinux
 from json_parser import SharesJsonParser
@@ -15,11 +19,12 @@ from bokeh.plotting import show
 from portfolio import Portfolio
 from portfolio import SortOutShares
 
+app = Flask(__name__)
 rj = SharesJsonParser()
 
-def main():
+@app.route('/', methods=['POST', 'GET'])
+def index():
     VerifyLinux()
-    app = Flask(__name__)
     shares_list = rj._get_shares()
     sos = SortOutShares()
     pf = Portfolio()
@@ -49,8 +54,7 @@ def main():
         loss = sh.fall_from_max()
         pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
         plot.append(pa)
-
-    show(column(plot))
+    return Markup(file_html(plot, CDN, 'Performance tracker'))
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
