@@ -28,10 +28,10 @@ class PlotAssets(object):
     def plot_assets(self):
         TOOLS = 'box_select,crosshair,reset'
  #       output_file("stocks.html", title="Performance tracker")
-        p = figure(plot_width=1000, plot_height=250, tools=TOOLS, toolbar_location=None)
+        p = figure(plot_width=700, plot_height=250, tools=TOOLS, toolbar_location=None)
         p.line(self.dates, self.closeprice, line_width=2, line_color="greenyellow")
         # Title
-        p.add_layout(Title(text='last price: ' + str(self.closeprice[-1]) + '€;   yield: ' + str(self.ly) + '%;   fall from max:' + str(self.loss) +'%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
+        #p.add_layout(Title(text='last price: ' + str(self.closeprice[-1]) + '€;   yield: ' + str(self.ly) + '%;   fall from max:' + str(self.loss) +'%', text_font_style="bold", text_font_size="13pt", text_font='Cantarell'), 'above')
         p.add_layout(Title(text=self.label, text_font_style="bold", text_font_size="16pt", text_font='Cantarell'), 'above')
         # Axes
         p.xaxis.minor_tick_line_color = None

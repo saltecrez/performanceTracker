@@ -44,7 +44,7 @@ def index():
         clprice = sh.get_close_price()
         loss = sh.fall_from_max()
         pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
-        plot.append(pa)
+      plot.append(pa)
 
     for label in sl:
 
@@ -57,10 +57,11 @@ def index():
         pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
         plot.append(pa)
 
-    plot_script, plot_div = components(plot)
-    print(plot_script)
+    
+    plot_script, plot_div = components(pa)
     kwargs = {'plot_script': plot_script, 'plot_div': plot_div}
     kwargs['title'] = 'Performance tracker'
+    kwargs['labels'] = sl
     if request.method == 'GET':
         return render_template('index.html', **kwargs)
     abort(404)
