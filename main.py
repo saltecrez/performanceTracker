@@ -33,7 +33,7 @@ def index():
     labels = sos.find_all_labels()
     ml = sos.find_multiple_labels()
     sl = sos.find_single_labels()
-    plot=[]
+    plot = []; ps = []; div = []; lab = []
 
     for label in ml:
 
@@ -44,7 +44,10 @@ def index():
         clprice = sh.get_close_price()
         loss = sh.fall_from_max()
         pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
-      plot.append(pa)
+        plot_script, plot_div = components(pa)
+        ps.append(plot_script)
+        div.append(plot_div)
+        lab.append(label)
 
     for label in sl:
 
@@ -55,15 +58,18 @@ def index():
         clprice = sh.get_close_price()
         loss = sh.fall_from_max()
         pa = PlotAssets(label,dates,clprice,float(i[1]),share_yield,loss).plot_assets()
-        plot.append(pa)
+        plot_script, plot_div = components(pa)
+        ps.append(plot_script)
+        div.append(plot_div)
+        lab.append(label)
 
-    
-    plot_script, plot_div = components(pa)
-    kwargs = {'plot_script': plot_script, 'plot_div': plot_div}
-    kwargs['title'] = 'Performance tracker'
-    kwargs['labels'] = sl
+    dic_list = []
+    kwargs = {}
     if request.method == 'GET':
-        return render_template('index.html', **kwargs)
+        for j in range(len(ps)):
+            kwargs = {'plot_script': ps[j], 'plot_div': div[j], 'labels': lab[j]}
+            dic_list.append(kwargs)
+        return render_template('index.html', dic_list = dic_list)
     abort(404)
     abort(Response('Hello'))
 

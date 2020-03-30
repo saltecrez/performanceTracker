@@ -14,16 +14,18 @@
     <div class="row">
     <div class="column">
     <h2> </h2>
-      {{ plot_div | safe }}
-      {{ plot_script | safe }}
+    {% for i in dic_list %}
+      {{ i.plot_script | safe }}
+      {{ i.plot_div | safe }}
+    {% endfor %}
     </div>
     <div class="column" style="background-color:#bbb;">
 
     <h2>Shares profile</h2>
-    <p>Some shares</p>
-    {% for i in labels %}
+    <p>Some info</p>
+    {% for i in dic_list %}
             <div class="column" style="background-color:#cac4b0;">
-	    <p>{{ i }} </p>
+	    <p>{{ i.labels }} </p>
             </div>
      {% endfor %}
     </div>
