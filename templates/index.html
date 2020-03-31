@@ -11,7 +11,9 @@
 <div class="content">
     <h1>Stocks in real time.</h1>
 </div>
-    <div class="row">
+
+<div class="row">
+
     <div class="column">
     <h2> </h2>
     {% for i in dic_list %}
@@ -19,16 +21,30 @@
       {{ i.plot_div | safe }}
     {% endfor %}
     </div>
-    <div class="column" style="background-color:#bbb;">
+
+    <div class="column">
 
     <h2>Shares profile</h2>
-    <p>Some info</p>
     {% for i in dic_list %}
             <div class="column" style="background-color:#cac4b0;">
-	    <p>{{ i.labels }} </p>
+		<p><b>{{ i.labels }}</b></p>
+		<table class="table">
+	            <tr>
+	                <th>yield (%)</th>  
+	                <th>close price (€)</th>  
+	                <th>from maximum (%)</th>   
+		    </tr>
+                    <tr>
+		        <td height='110' width="150">{{i.yield}}</td>
+		        <td width="150">{{i.closeprice}}</td> 
+		        <td width="150">{{i.fallfrommax}}</td>
+		    </tr>
+		</table>
             </div>
+	    <br>   </br>
      {% endfor %}
     </div>
+
 </div>
 
 {% endblock %}

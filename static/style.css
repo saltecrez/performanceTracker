@@ -4,11 +4,6 @@ body {
   margin: 0;
 }
 
-td {
-    text-align: center;
-    padding: 5px;
-}
-
 /* Header/Logo Title */
 .header {
   padding: 10px;
@@ -16,26 +11,41 @@ td {
   background: #02100d;
   color: white;
   font-size: 20px;
-}
-
-/* Page Content */
-.content {padding:60px;}
-
-
-* {
-  box-sizing: border-box;
-}
-
-.row {
-  display: flex;
-}
+} 
 
 /* Create two equal columns that sits next to each other */
 .column {
-  flex: 50%;
-  padding: 0px 60px;
+  padding: 600px 600px;
+  height: 1500px;
+} 
+
+.row {
+  display: flex;
+  padding: 600px 600px;
 }
 
-.form {
-    margin-top: 20px;
+.table {
+  font-family: cantarell;
+  border-collapse: collapse;
+  width: 100%;
 }
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+/*th{
+      background-color: #4287f5;
+      color: white;
+      }
+th,td{
+      width: 150px;
+      text-align: center;
+      border: 1px solid black;
+      padding: 5px;
+}*/

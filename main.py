@@ -33,7 +33,7 @@ def index():
     labels = sos.find_all_labels()
     ml = sos.find_multiple_labels()
     sl = sos.find_single_labels()
-    plot = []; ps = []; div = []; lab = []
+    plot = []; ps = []; div = []; lab = []; sy = []; cp = []; ffm = [];
 
     for label in ml:
 
@@ -48,6 +48,9 @@ def index():
         ps.append(plot_script)
         div.append(plot_div)
         lab.append(label)
+        sy.append(share_yield)
+        cp.append(clprice[-1])
+        ffm.append(loss)
 
     for label in sl:
 
@@ -62,12 +65,15 @@ def index():
         ps.append(plot_script)
         div.append(plot_div)
         lab.append(label)
+        sy.append(share_yield)
+        cp.append(clprice[-1])
+        ffm.append(loss)
 
     dic_list = []
     kwargs = {}
     if request.method == 'GET':
         for j in range(len(ps)):
-            kwargs = {'plot_script': ps[j], 'plot_div': div[j], 'labels': lab[j]}
+            kwargs = {'plot_script': ps[j], 'plot_div': div[j], 'labels': lab[j], 'yield': sy[j], 'closeprice': cp[j], 'fallfrommax': ffm[j]}
             dic_list.append(kwargs)
         return render_template('index.html', dic_list = dic_list)
     abort(404)
